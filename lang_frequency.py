@@ -21,3 +21,4 @@ if __name__ == '__main__':
     print('Up to 10 top words in given text:')
     for word, frequency in get_most_frequent_words(text):
         print('{0}: {1}'.format(word, frequency))
+
