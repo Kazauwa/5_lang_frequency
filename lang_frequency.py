@@ -11,8 +11,7 @@ def load_data(filepath):
 
 def prepare_data(text):
     if not text:
-        print('Given file is empty!')
-        sys.exit(0)
+        raise ValueError
     words = re.findall('\w+', text)
     cooked_words = [word.lower() for word in words]
     return cooked_words
@@ -25,7 +24,11 @@ def get_most_frequent_words(words_list, top_frequent=10):
 
 if __name__ == '__main__':
     text = load_data(input('Path to the text file: '))
-    words_list = prepare_data(text)
+    try:
+        words_list = prepare_data(text)
+    except ValueError:
+        print('Given textfile is empty!')
+        sys.exit(0)
     top_words = get_most_frequent_words(words_list)
     print('Up to 10 top words in given text:\n')
     for word, frequency in top_words:
